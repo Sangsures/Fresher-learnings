@@ -1,24 +1,34 @@
-import logo from './logo.svg';
+// App.js
 import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { store } from './Components/Redux/store'; 
+import Layout from './Components/Layout/Layout';
+import MainContent from './Components/Maincontent/Maincontent';
+import Content from './Components/Content/Content';
+import Monitoring from './Components/Monitoring/Monitoring';
+import Dashboard from './Components/Dashboard/Dashboard';
+import API from './Components/API/API';
+import TodoApp from './Components/TodoApp';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <div className="App">
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route path="cloud-monitoring" element={<MainContent />} />
+              <Route path="user-management" element={<Content />} />
+              <Route path="Reports" element={<Monitoring />} />
+              <Route path="Dashboard" element={<Dashboard />} />
+              <Route path="Movielist" element={<API />} />
+              <Route path="Todolist" element={<TodoApp />} />
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </div>
+    </Provider>
   );
 }
 
