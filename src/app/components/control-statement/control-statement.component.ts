@@ -14,7 +14,7 @@ export class ControlStatementComponent {
 
   cityList: string [] = [
     "Chennai",
-    "Coimbatore",
+    "Coimbatesde",
     "Erode",
     "Salem",
     "Trichy"
