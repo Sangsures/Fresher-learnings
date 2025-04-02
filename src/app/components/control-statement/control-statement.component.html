@@ -1,0 +1,58 @@
+<div class="row">
+  <div class="col-3">
+    @if(div1Visible == true) {
+    <div class="bg-success p-3">Div 1</div>
+    }
+  </div>
+  <div class="col-3">
+    @if (isChecked == true) {
+    <div class="bg-primary p-3">Checkbox is checked</div>
+    } @else {
+    <div class="bg-danger p-3">Checkbox is unchecked</div>
+    }
+  </div>
+  <div class="col-3">
+    @if(dayName == 'noon') {
+    <span>Monday</span>
+    } @else if (dayName == 'tue') {
+    <span>Tuesday</span>
+    } @else if (dayName == 'wed') {
+    <span>Wednesday</span>
+    } @else {
+    <span>Enter Proper Day Name</span>
+    }
+  </div>
+</div>
+
+<div class="row pt-4">
+  <div class="col-3">
+    <button class="btn btn-success" (click)="hideShowDiv1(true)">Show</button>
+    <button class="btn btn-danger" (click)="hideShowDiv1(false)">Hide</button>
+  </div>
+  <div class="col-3">
+    <input type="checkbox" [(ngModel)]="isChecked" />
+  </div>
+  <div class="col-3">
+    <input
+      type="text"
+      [(ngModel)]="dayName"
+      maxlength="3"
+      placeholder="Enter Days starting"
+    />
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-3">
+    <select>
+      @for (items of citylist; track $index) {
+        <option> {{item}}</option>
+      }
+    </select>
+  </div>
+  <div class="col-3">
+    @for (city of cityList; track $index) {
+      <button class="btn btn-success">{{city}}</button>
+    }
+  </div>
+</div>
