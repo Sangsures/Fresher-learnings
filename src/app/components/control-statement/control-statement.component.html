@@ -1,26 +1,18 @@
 <div class="row">
   <div class="col-3">
-    @if(div1Visible == true) {
-    <div class="bg-success p-3">Div 1</div>
-    }
+    <div *ngIf="div1Visible" class="bg-success p-3">Div 1</div>
   </div>
   <div class="col-3">
-    @if (isChecked == true) {
-    <div class="bg-primary p-3">Checkbox is checked</div>
-    } @else {
-    <div class="bg-danger p-3">Checkbox is unchecked</div>
-    }
+    <div *ngIf="isChecked; else unchecked" class="bg-primary p-3">Checkbox is checked</div>
+    <ng-template #unchecked>
+      <div class="bg-danger p-3">Checkbox is unchecked</div>
+    </ng-template>
   </div>
   <div class="col-3">
-    @if(dayName == 'noon') {
-    <span>Monday</span>
-    } @else if (dayName == 'tue') {
-    <span>Tuesday</span>
-    } @else if (dayName == 'wed') {
-    <span>Wednesday</span>
-    } @else {
-    <span>Enter Proper Day Name</span>
-    }
+    <span *ngIf="dayName == 'noon'">Monday</span>
+    <span *ngIf="dayName == 'tue'">Tuesday</span>
+    <span *ngIf="dayName == 'wed'">Wednesday</span>
+    <span *ngIf="dayName != 'noon' && dayName != 'tue' && dayName != 'wed'">Enter Proper Day Name</span>
   </div>
 </div>
 
@@ -45,14 +37,34 @@
 <div class="row">
   <div class="col-3">
     <select>
-      @for (items of citylist; track $index) {
-        <option> {{item}}</option>
-      }
+      <option *ngFor="let items of cityList">{{ items }}</option>
     </select>
   </div>
   <div class="col-3">
-    @for (city of cityList; track $index) {
-      <button class="btn btn-success">{{city}}</button>
-    }
+    <button *ngFor="let city of cityList" class="btn btn-success">{{ city }}</button>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-5">
+    <table>
+      <thead>
+      <tr>
+        <th>Sr No</th>
+        <th>Name</th>
+        <th>City</th>
+        <th>Mobile No</th>
+      </tr>
+      </thead>
+      <tbody>
+        @for (item of employeeArray; track $index) {
+          <tr>
+            <td>{{$index+1}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.contactNo}}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
   </div>
 </div>
