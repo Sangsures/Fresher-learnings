@@ -1,0 +1,79 @@
+<div class="container mt-4">
+  <form class="row g-3 needs-validation" (ngSubmit)="onUserSave()" [formGroup]="userForm" novalidate>
+
+    
+    <div class="col-md-4">
+      <label for="validationCustom01" class="form-label">First name</label>
+      <input type="text" formControlName="fName" class="form-control" id="validationCustom01" required>
+      <div class="text-danger">
+        @if(userForm.controls['fName'].errors?.['required'] && userForm.controls['fName'].touched) {
+          <span>This is required</span>
+        }
+      </div>
+
+   
+    <div class="col-md-4">
+      <label for="validationCustom02" class="form-label">Last name</label>
+      <input type="text" formControlName="lname" class="form-control" id="validationCustom02" required>
+      <div class="text-danger" *ngIf="userForm.get('lname')?.errors?.['required'] && userForm.get('lname')?.touched">
+        Last name is required
+      </div>
+      <div class="text-danger" *ngIf="userForm.get('lname')?.errors?.['minlength'] && userForm.get('lname')?.touched">
+        Minimum 5 characters required
+      </div>
+    </div>
+
+    
+    <div class="col-md-4">
+      <label for="validationCustomUsername" class="form-label">Username</label>
+      <div class="input-group has-validation">
+        <span class="input-group-text" id="inputGroupPrepend">&#64;</span>
+        <input type="text" formControlName="userName" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
+      </div>
+    </div>
+
+    
+    <div class="col-md-6">
+      <label for="validationCustom03" class="form-label">City</label>
+      <input type="text" formControlName="city" class="form-control" id="validationCustom03" required>
+    </div>
+
+   
+    <div class="col-md-3">
+      <label for="validationCustom04" class="form-label">State</label>
+      <select class="form-select" formControlName="state" id="validationCustom04" required>
+        <option selected disabled value="">Choose...</option>
+        <option>Tamil Nadu</option>
+        <option>Kerala</option>
+        <option>Karnataka</option>
+        <option>Telangana</option>
+        <option>Andhra Pradesh</option>
+        <option>Maharashtra</option>
+      </select>
+    </div>
+
+    <div class="col-md-3">
+      <label for="validationCustom05" class="form-label">Zip</label>
+      <input type="text" formControlName="zip" class="form-control" id="validationCustom05" required>
+    </div>
+
+   
+    <div class="col-12">
+      <div class="form-check">
+        <input class="form-check-input" formControlName="isAggree" type="checkbox" id="invalidCheck" required>
+        <label class="form-check-label" for="invalidCheck">
+          Agree to terms and conditions
+        </label>
+        <div class="text-danger" *ngIf="userForm.get('isAggree')?.errors?.['required'] && userForm.get('isAggree')?.touched">
+          You must agree before submitting.
+        </div>
+      </div>
+    </div>
+
+    
+    <div class="col-12">
+      <button class="btn btn-primary"  (ngSubmit)="onUserSave()" type="submit">Submit form</button>
+    </div>
+
+  </form>
+</div>
